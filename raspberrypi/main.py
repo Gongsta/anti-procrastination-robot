@@ -1,16 +1,22 @@
-#https://www.youtube.com/watch?v=1Ukz9CnJD7I
+# Code to execute from remote computer. Make sure to have the Raspberry Pi configured for Remote GPIO
+# see here https://gpiozero.readthedocs.io/en/stable/remote_gpio.html for more
 from gpiozero import Servo
+from gpiozero.pins.pigpio import PiGPIOFactory
 from time import sleep
 
-myGPIO=17
+factory = PiGPIOFactory()
 
-servo = Servo(myGPIO)
-servo.min()
+myGPIO=17 #pin 17 for PWM control
+servo = Servo(myGPIO, pin_factory=factory)
 
-def shutComputer():
-    servo.max()
-    sleep(1)
-    servo.min()
+servo.value = -1
 
-    #You can also use the value property to move the servo to a particular position, on a scale from -1 (min) to 1 (max) where 0 is the mid-point:
-    #servo.value = 0.2
+def toggleComputer():
+    servo.value = -0.4
+    sleep(0.2)
+    servo.value = -1
+
+
+toggleComputer() #Turn off computer
+sleep(20)
+toggleComputer() #Turn on computer
