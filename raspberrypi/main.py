@@ -12,7 +12,7 @@ servo = Servo(myGPIO, pin_factory=factory)
 servo.value = -1
 
 def toggleComputer():
-    servo.value = -0.4
+    servo.value = -0.25
     sleep(0.2)
     servo.value = -1
 

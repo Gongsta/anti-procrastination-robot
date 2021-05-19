@@ -21,6 +21,14 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
                         chrome.tabs.update(tabId, {
                             url: "blocked.html"
                         })
+
+                        var jqXHR = $.ajax({
+                                type: "POST",
+                                url: "192.168.0.130/request",
+                                async: false
+                            });
+                    
+                    
                     }
                 })
             }
