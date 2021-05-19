@@ -4,7 +4,7 @@ from gpiozero import Servo
 from gpiozero.pins.pigpio import PiGPIOFactory
 from time import sleep
 
-factory = PiGPIOFactory()
+factory = PiGPIOFactory(host='192.168.0.130') #Set host to IP of your RaspPi
 
 myGPIO=17 #pin 17 for PWM control
 servo = Servo(myGPIO, pin_factory=factory)
